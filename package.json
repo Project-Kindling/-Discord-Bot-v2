@@ -1,0 +1,27 @@
+{
+  "name": "kindling-bot-v2",
+  "version": "1.0.0",
+  "description": "Node.js port of Kindling Bot (discord.py version).",
+  "main": "app.mjs",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Project-Kindling/kindling-bot-v2.git"
+  },
+  "author": "Ivan Shafiuddin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Project-Kindling/kindling-bot-v2/issues"
+  },
+  "homepage": "https://github.com/Project-Kindling/kindling-bot-v2#readme",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "prettier": "^2.5.1"
+  }
+}
