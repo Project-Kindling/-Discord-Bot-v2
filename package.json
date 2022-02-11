@@ -1,7 +1,7 @@
 {
   "name": "kindling-bot-v2",
   "version": "1.0.0",
-  "description": "Node.js port of Kindling Bot (discord.py version).",
+  "description": "Discord.js port of Kindling Bot (discord.py version).",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

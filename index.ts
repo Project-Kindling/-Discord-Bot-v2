@@ -1,14 +1,3 @@
-import DiscordJS, { Intents } from "discord.js"
-import dotenv from "dotenv"
+import announce from "./commands/announce"
 
-dotenv.config()
-
-const client = new DiscordJS.Client({
-    intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
-})
-
-client.on("ready", () => {
-    console.log(client.user?.tag, "\n=============== READY ===============\n")
-})
-
-client.login(process.env.TOKEN)
+announce()
