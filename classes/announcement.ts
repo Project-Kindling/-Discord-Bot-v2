@@ -1,17 +1,17 @@
 class Announcement {
-    channelID: string
+    channelId: string
     title: string
     content: string
     schedule: string
     image: boolean
     constructor(
-        channelID: string = "941609833252130846",
+        channelId: string = "941609833252130846",
         title: string = "",
         content: string = "",
         schedule: string = "",
         image: boolean = false
     ) {
-        this.channelID = channelID
+        this.channelId = channelId
         this.title = title
         this.content = content
         this.schedule = schedule
