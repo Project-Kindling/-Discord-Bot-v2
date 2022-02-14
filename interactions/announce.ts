@@ -1,13 +1,13 @@
 import DiscordJS, {
     Guild,
-    GuildMember,
+    // GuildMember,
     Interaction,
-    Message,
-    Role,
+    // Message,
+    // Role,
 } from "discord.js"
 import { Announcement } from "../classes/announcement"
-import client, { guilds, on } from "../client"
-import ready from "../commands"
+import client from "../client"
+// import ready from "../commands"
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -52,21 +52,39 @@ const announce = async (): Promise<void> => {
                 ephemeral: true,
             })
 
-            client.once("messageCreate", async (msg) => {
-                console.log(`msg ~~> ${msg}`)
-                embed.setDescription(msg.content)
-                try {
-                    await interaction.followUp({
-                        embeds: [embed],
-                        content: msg.content,
-                    })
-                } finally {
-                    announcement.content = msg.content
-                    console.log(
-                        `announcement.content  ~~> ${announcement.content}`
+            const expectInvokerMsg = () => {
+                client.once("messageCreate", async (msg) => {
+                    if (msg.author.bot === true) {
+                        return
+                    }
+                    console.log(`msg ~~> ${msg}`)
+                    const guild: Guild | undefined = client.guilds.cache.get(
+                        msg.guildId!
                     )
-                }
-            })
+                    const member = guild?.members.cache.get(msg.author.id)
+                    if (member === interaction.member) {
+                        embed.setDescription(msg.content)
+                        try {
+                            await interaction.followUp({
+                                embeds: [embed],
+                                content: msg.content,
+                            })
+                        } finally {
+                            announcement.content = msg.content
+                            console.log(
+                                `announcement.content  ~~> ${announcement.content}`
+                            )
+                        }
+                    } else {
+                        await msg.reply(
+                            "Sorry but you are not the invoker of the command!"
+                        )
+                        expectInvokerMsg()
+                    }
+                })
+            }
+
+            expectInvokerMsg()
 
             // await interaction.editReply({
             //     embeds: [embed],
