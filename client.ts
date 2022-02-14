@@ -7,10 +7,6 @@ const client: DiscordJS.Client<boolean> = new DiscordJS.Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES],
 })
 
-client.on("ready", () => {
-    console.log(client.user?.tag, "\n=============== READY ===============\n")
-})
-
 client.login(process.env.TOKEN)
 
 export = client
