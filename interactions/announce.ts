@@ -64,6 +64,13 @@ const announce = async (): Promise<void> => {
                     const member = guild?.members.cache.get(msg.author.id)
                     if (member === interaction.member) {
                         embed.setDescription(msg.content)
+
+                        if (msg.attachments.size > 0) {
+                            embed.setImage(
+                                msg.attachments.first()?.url.toString()!
+                            )
+                        }
+
                         try {
                             await interaction.followUp({
                                 embeds: [embed],

@@ -15,17 +15,17 @@
 
 ## Tasks
 
-- Announcement
+- Announce command
     * [x] Create `Announcement` class
     * [x] Slash command interaction
     * [ ] Schedule announcements
-    * [ ] Add image with announcements
+    * [x] Add image with announcements
     * [ ] Connect to DB
     * [ ] Create `announcement` schema
     * [ ] Push to DB (automated)
     * [ ] Pull from DB (automated)
-- Poll/Vote
-- Anonymous feedback
+- Poll command
+- Feedback command
 
 ## Blocked
 
