@@ -42,7 +42,7 @@ const announce = async (): Promise<void> => {
                 await interaction.reply({
                     // embeds: [embed],
                     content:
-                        "Announce command can only be invoken in `#announcements` channel!",
+                        "The `/announce` command can only be invoked from the `#announcements` channel!",
                 })
                 return
             }

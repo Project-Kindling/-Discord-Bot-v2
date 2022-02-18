@@ -4,6 +4,8 @@
     > Create and store a log of each commands invoked, member who invoked it, date/time when it was invoked
 - List command
 - Edit command
+- Poll command
+- Feedback command
 
 ## Issues
 
@@ -24,8 +26,6 @@
     * [ ] Create `announcement` schema
     * [ ] Push to DB (automated)
     * [ ] Pull from DB (automated)
-- Poll command
-- Feedback command
 
 ## Blocked
 

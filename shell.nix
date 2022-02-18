@@ -14,7 +14,7 @@ let
 
 in
 stdenv.mkDerivation {
-  name = "node";
+  name = "ts-node";
   buildInputs = with pkgsUnstable; [
     nodejs
     nodePackages.typescript
