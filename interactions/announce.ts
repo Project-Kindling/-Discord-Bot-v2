@@ -8,6 +8,7 @@ import DiscordJS, {
 import { Announcement } from "../classes/announcement"
 import client from "../client"
 // import ready from "../commands"
+import { peekConnection } from "../mongo";
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -18,16 +19,16 @@ const announce = async (): Promise<void> => {
         const { commandName, options } = interaction
 
         if (commandName === "announce") {
-            const title = options.getString("title")
-            const content = options.getString("content")
-            const channel = options.getString("channel")
-            const schedule = options.getString("schedule")
-            const image = options.getBoolean("image")
+            const title: string | null = options.getString("title")
+            const content: string | null = options.getString("content")
+            const channel: string | null = options.getString("channel")
+            const schedule: string | null = options.getString("schedule")
+            const image: boolean | null = options.getBoolean("image")
 
             const announcement: Announcement = new Announcement(title!)
             console.log(announcement.title)
 
-            let embed = new DiscordJS.MessageEmbed()
+            let embed: DiscordJS.MessageEmbed = new DiscordJS.MessageEmbed()
             embed.setTitle(title!)
             embed.setDescription(content!)
 
@@ -92,6 +93,8 @@ const announce = async (): Promise<void> => {
             }
 
             expectInvokerMsg()
+
+            peekConnection()
 
             // await interaction.editReply({
             //     embeds: [embed],

@@ -1,4 +1,4 @@
-import { Timer } from "./timers"
+import { Timer } from "./timer"
 
 class Announcement {
     channelId: string

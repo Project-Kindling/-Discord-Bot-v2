@@ -18,7 +18,8 @@
   "homepage": "https://github.com/Project-Kindling/kindling-bot-v2#readme",
   "dependencies": {
     "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0"
+    "dotenv": "^16.0.0",
+    "mongoose": "^6.2.2"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^5.11.0",

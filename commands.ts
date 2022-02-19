@@ -6,8 +6,8 @@ const ready = async () => {
         console.log(`    -<<* ${client.user?.tag} *>>-    `)
         console.log("=============== READY ===============")
 
-        const guildId = "879212507925995540"
-        const guild = client.guilds.cache.get(guildId)
+        const guildId: string = "879212507925995540"
+        const guild: DiscordJS.Guild | undefined = client.guilds.cache.get(guildId)
 
         let commands
         if (guild) {
