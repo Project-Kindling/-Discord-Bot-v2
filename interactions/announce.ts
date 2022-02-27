@@ -8,7 +8,7 @@ import DiscordJS, {
 import { Announcement } from "../classes/announcement"
 import client from "../client"
 // import ready from "../commands"
-import { peekConnection } from "../mongo";
+import { peekConnection, insertToDB } from "../mongo";
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -82,6 +82,9 @@ const announce = async (): Promise<void> => {
                             console.log(
                                 `announcement.content  ~~> ${announcement.content}`
                             )
+
+                            insertToDB(msg.content)
+
                         }
                     } else {
                         await msg.reply(

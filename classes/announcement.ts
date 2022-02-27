@@ -24,7 +24,4 @@ class Announcement {
     }
 }
 
-// Creating announcement obj in which the timer is nested
-const announcement = new Announcement()
-
 export { Announcement }

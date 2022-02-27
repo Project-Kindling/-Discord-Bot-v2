@@ -13,7 +13,7 @@ const announcementSchema = new mongoose.Schema({
     invoker: String,
     target: String,
     content: String,
-    image: Image,
+    // image: Image,
 })
 
 export = mongoose.model("announcements", announcementSchema)

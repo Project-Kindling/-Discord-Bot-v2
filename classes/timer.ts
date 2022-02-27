@@ -4,7 +4,7 @@ class Timer {
 
     timerUtils = () => {
         // eventDate will be queried from the database
-        const eventDate: Date = new Date("2022-02-19 19:40:20")
+        const eventDate: Date = new Date("2022-02-21 22:20:30")
         // Set to currentDate + 5(seconds)
         const currentDate: Date = new Date()
 
