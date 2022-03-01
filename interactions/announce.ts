@@ -8,7 +8,7 @@ import DiscordJS, {
 import { Announcement } from "../classes/announcement"
 import client from "../client"
 // import ready from "../commands"
-import { peekConnection, insertToDB } from "../mongo";
+import { peekConnection, insertToDB } from "../mongo"
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -20,17 +20,62 @@ const announce = async (): Promise<void> => {
 
         if (commandName === "announce") {
             const title: string | null = options.getString("title")
-            const content: string | null = options.getString("content")
-            const channel: string | null = options.getString("channel")
-            const schedule: string | null = options.getString("schedule")
-            const image: boolean | null = options.getBoolean("image")
+            const due: string | null = options.getString("due")
+            const target: string | null = options.getString("target")
 
-            const announcement: Announcement = new Announcement(title!)
-            console.log(announcement.title)
+            // title: string = "",
+            // content: string = "",
+            // due: string = "",
+            // target: string = "941609833252130846",
+            // invoker: string = "",
+            // image: boolean = false
+
+            /* Date locale must be set to Canada */
+            // const nowDate = new Date("2022/02/28")
+            const nowDate = new Date()
+            console.log("nowDate ~~> ", nowDate) // 2022-02-28T12:00:20,386Z
+            console.log("newDate.getHours() ~~> ", nowDate.getHours())
+
+            // const offset = nowDate.getTimezoneOffset() * 60 * 1000
+            // console.log("offsetDate ~~> ", offset)
+            //
+            // const offsetDateMs = nowDate.getTime() - offset
+            // console.log("offsetDateMs ~~> ", offsetDateMs)
+            // const offsetDate = new Date(offsetDateMs)
+            // console.log("offsetDate ~~> ", offsetDate)
+
+            const dueDate = new Date(due!)
+            const offset = dueDate.getTimezoneOffset() * 60 * 1000
+            const offsetDateMs = dueDate.getTime() - offset
+            const offsetDate = new Date(offsetDateMs)
+            console.log("dueDate ~~> ", dueDate)
+            console.log("offsetDate ~~> ", offsetDate)
+
+            // %% TODO
+            /* MM-DD-YY hh:mm */
+            /* MM-DD-YY */
+            /* x minutes (minimum 5) */
+            /* x hours */
+            /* x days */
+            /* Tomorrow */
+            // %% End
+
+            const dueDefaultMs = nowDate.getTime() + 5 * 60 * 1000
+            console.log("dueDefaultMs.getTime() ~~> ", dueDefaultMs)
+
+            const announcement: Announcement = new Announcement(
+                title!,
+                "",
+                offsetDate,
+                "941609833252130846",
+                interaction.member?.toString(),
+                false
+            )
+
+            console.log("announcement.title ~~> ", announcement.title)
 
             let embed: DiscordJS.MessageEmbed = new DiscordJS.MessageEmbed()
             embed.setTitle(title!)
-            embed.setDescription(content!)
 
             console.log(`interaction ~~> ${interaction}`)
             console.log(`interaction.channelId ~~> ${interaction.channelId}`)
@@ -82,9 +127,8 @@ const announce = async (): Promise<void> => {
                             console.log(
                                 `announcement.content  ~~> ${announcement.content}`
                             )
-
-                            insertToDB(msg.content)
-
+                            // insertToDB()
+                            // insertToDB(msg.content)
                         }
                     } else {
                         await msg.reply(
@@ -97,7 +141,8 @@ const announce = async (): Promise<void> => {
 
             expectInvokerMsg()
 
-            peekConnection()
+            insertToDB()
+            // peekConnection()
 
             // await interaction.editReply({
             //     embeds: [embed],

@@ -28,10 +28,10 @@ class Timer {
         let intervalId: NodeJS.Timer = setInterval(() => {
             this.counter = this.counter - 1
             console.log(this.counter)
-            if (this.counter === 0) {
+            // if (this.counter === 0) {
+            if (this.counter <= 0) {
                 clearInterval(intervalId)
             }
-            this.counter = this.counter
             this.checker()
         }, 1000)
 
