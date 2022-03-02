@@ -9,15 +9,14 @@ const announcementSchema = new mongoose.Schema({
     // | Content           | `String`  |
     // | Image             | `image    |
 
-    // title: String,
+    title: String,
     content: String,
-    // due: Date,
-    due: Number,
+    due: Date,
     target: String,
-    // image: String,
-    // timer: Timer,
     invoker: String,
     sent: Boolean,
+    // image: String,
+    // timer: Timer,
 })
 
 export = mongoose.model("announcements", announcementSchema)

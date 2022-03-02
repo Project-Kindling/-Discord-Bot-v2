@@ -9,6 +9,7 @@ import { Announcement } from "../classes/announcement"
 import client from "../client"
 // import ready from "../commands"
 import { peekConnection, insertToDB } from "../mongo"
+import announcements from "../schemas/announcements"
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -122,13 +123,16 @@ const announce = async (): Promise<void> => {
                                 embeds: [embed],
                                 content: msg.content,
                             })
-                        } finally {
                             announcement.content = msg.content
                             console.log(
                                 `announcement.content  ~~> ${announcement.content}`
                             )
-                            // insertToDB()
-                            // insertToDB(msg.content)
+                        } finally {
+                            console.log(
+                                "announcement.content (into insertToDB()) ~~> ",
+                                announcement.content
+                            )
+                            insertToDB(announcement)
                         }
                     } else {
                         await msg.reply(
@@ -141,7 +145,6 @@ const announce = async (): Promise<void> => {
 
             expectInvokerMsg()
 
-            insertToDB()
             // peekConnection()
 
             // await interaction.editReply({
