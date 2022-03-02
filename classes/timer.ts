@@ -4,17 +4,17 @@ class Timer {
 
     timerUtils = () => {
         // eventDate will be queried from the database
-        const eventDate: Date = new Date("2022-02-19 15:53:20")
+        const eventDate: Date = new Date("2022-02-21 22:20:30")
         // Set to currentDate + 5(seconds)
-        const currentDate = new Date()
+        const currentDate: Date = new Date()
 
         // Getting currentDate & eventDate
-        let timeLeft = eventDate.getTime() - currentDate.getTime()
+        let timeLeft: number = eventDate.getTime() - currentDate.getTime()
 
         // Conveting the time from ms to seconds
-        let timeLeftInSeconds = timeLeft / 1000
+        let timeLeftInSeconds: number = timeLeft / 1000
         // Flooring the value
-        let counter = Math.floor(timeLeftInSeconds)
+        let counter: number = Math.floor(timeLeftInSeconds)
 
         return counter
     }
@@ -25,16 +25,16 @@ class Timer {
         }
     }
     constructor() {
-        let intervalId = setInterval(() => {
+        let intervalId: NodeJS.Timer = setInterval(() => {
             this.counter = this.counter - 1
             console.log(this.counter)
-            if (this.counter === 0) {
+            // if (this.counter === 0) {
+            if (this.counter <= 0) {
                 clearInterval(intervalId)
             }
-            this.counter = this.counter
             this.checker()
         }, 1000)
-        this.timerUtils()
+
         this.counter = this.timerUtils()
     }
 }

@@ -5,7 +5,6 @@ let
       https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
   pkgsUnstable = import unstableTarball { };
   nodeNix = import ~/Arcane/_n/node/default.nix { };
-  todo = pkgs.writeShellScriptBin ''todo'' ''taskell $PROJECT_ROOT/taskboard/Taskboard.md'';
   ts-node = pkgs.writeShellScriptBin ''ts-node'' ''$PROJECT_ROOT/node_modules/.bin/ts-node "$@"'';
   tsc = pkgs.writeShellScriptBin ''tsc'' ''$PROJECT_ROOT/node_modules/.bin/tsc "$@"'';
   nodemon = pkgs.writeShellScriptBin ''nodemon'' ''$PROJECT_ROOT/node_modules/.bin/nodemon "$@"'';
@@ -21,7 +20,6 @@ stdenv.mkDerivation {
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted
     nodeNix.emmet-ls
-    todo
 
     jq
 

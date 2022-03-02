@@ -1,30 +1,30 @@
-import { Timer } from "./timers"
+import { Timer } from "./timer"
 
 class Announcement {
-    channelId: string
-    title: string
-    content: string
-    schedule: string
-    image: boolean
-    timer: Timer
+    title: string // Announcement title
+    content: string // Announcement content
+    due: Date // Announcement due date
+    target: string // Target channel
+    invoker: string // Invoker of `/announce` command
+    image: boolean // Possible image attachments
+    timer: Timer // Timer object
 
     constructor(
-        channelId: string = "941609833252130846",
         title: string = "",
         content: string = "",
-        schedule: string = "",
+        due: Date = new Date(),
+        target: string = "941609833252130846",
+        invoker: string = "",
         image: boolean = false
     ) {
-        this.channelId = channelId
         this.title = title
         this.content = content
-        this.schedule = schedule
+        this.due = due
+        this.target = target
+        this.invoker = invoker
         this.image = image
         this.timer = new Timer()
     }
 }
-
-// Creating announcement obj in which the timer is nested
-const announcement = new Announcement()
 
 export { Announcement }
