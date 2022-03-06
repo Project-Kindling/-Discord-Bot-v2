@@ -1,15 +1,18 @@
+import moment from "moment"
+
 // Countdown to announcement class
 class Timer {
     counter: number
 
     timerUtils = () => {
-        // eventDate will be queried from the database
-        const eventDate: Date = new Date("2022-02-21 22:20:30")
         // Set to currentDate + 5(seconds)
         const currentDate: Date = new Date()
 
+        // Default eventDate
+        const dueDate = new Date(currentDate.getTime() + 10 * 60 * 1000)
+
         // Getting currentDate & eventDate
-        let timeLeft: number = eventDate.getTime() - currentDate.getTime()
+        let timeLeft: number = dueDate.getFullYear() - currentDate.getTime()
 
         // Conveting the time from ms to seconds
         let timeLeftInSeconds: number = timeLeft / 1000
