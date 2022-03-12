@@ -1,3 +1,5 @@
+// Announcement schema
+
 import mongoose from "mongoose"
 
 const announcementSchema = new mongoose.Schema({

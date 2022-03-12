@@ -91,7 +91,7 @@ export const pullUnsentFromDB = async () => {
             )
         } finally {
             mongoose.connection.close()
-            return [ unsentAnnouncements, unsentAnnouncementsLength ]
+            return [unsentAnnouncements, unsentAnnouncementsLength]
         }
     })
 }

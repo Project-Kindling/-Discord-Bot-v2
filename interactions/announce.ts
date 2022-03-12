@@ -2,14 +2,16 @@ import DiscordJS, {
     Guild,
     // GuildMember,
     Interaction,
+    Message,
     // Message,
     // Role,
 } from "discord.js"
 import { Announcement } from "../classes/announcement"
 import client from "../client"
 // import ready from "../commands"
-import { peekConnection, insertToDB } from "../mongo"
+import { peekConnection, insertToDB, pullUnsentFromDB } from "../mongo"
 import announcements from "../schemas/announcements"
+import { validateDate } from "../utils/validateDate"
 
 const announce = async (): Promise<void> => {
     client.on("interactionCreate", async (interaction: Interaction) => {
@@ -24,8 +26,20 @@ const announce = async (): Promise<void> => {
             const due: string | null = options.getString("due")
             const target: string | null = options.getString("target")
 
+            // let errors:number
+            const errors = validateDate(due!)
+            console.log("Failed to load \nErrors ~~> ", validateDate(due!))
+            console.log("errors ~~> ", errors)
+            if (errors !== 0) {
+                console.log("Failed to load \nErrors ~~> ", validateDate(due!))
+                await interaction.reply({
+                    content: "Invalid Input",
+                })
+                return
+            }
             // title: string = "",
-            // content: string = "",
+            // content: string = "",+
+
             // due: string = "",
             // target: string = "941609833252130846",
             // invoker: string = "",
@@ -117,7 +131,6 @@ const announce = async (): Promise<void> => {
                                 msg.attachments.first()?.url.toString()!
                             )
                         }
-
                         try {
                             await interaction.followUp({
                                 embeds: [embed],
@@ -133,6 +146,7 @@ const announce = async (): Promise<void> => {
                                 announcement.content
                             )
                             insertToDB(announcement)
+                            console.log(pullUnsentFromDB())
                         }
                     } else {
                         await msg.reply(

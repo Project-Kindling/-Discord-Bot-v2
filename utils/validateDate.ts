@@ -1,13 +1,18 @@
-let inputDate = "2022-13-0" // YYYY-MM-DD
-console.log(inputDate)
-
-let currentDate = new Date()
-
-let dateSliced = inputDate.split("-")
-console.log(`The current year is ~~> ${currentDate.getFullYear()}`)
-
-export const validateDate = () => {
+export const validateDate = (due: string) => {
     let errors = 0 // Keeps track of the number of errors
+    let currentDate = new Date()
+    let dateSliced = due.split("-")
+
+    if (isNaN(parseInt(due)) === true) {
+        errors += 1
+    }
+    if (
+        isNaN(parseInt(dateSliced[0])) === true ||
+        isNaN(parseInt(dateSliced[1])) === true ||
+        isNaN(parseInt(dateSliced[2])) === true
+    ) {
+        errors += 1
+    }
 
     if (parseInt(dateSliced[2]) < 1) {
         console.log("Day cannot be than than 1")
@@ -16,7 +21,7 @@ export const validateDate = () => {
     if (parseInt(dateSliced[0]) < currentDate.getFullYear()) {
         console.log("Scheduled year cannot be less than current year")
         errors += 1
-    } else if (dateSliced[0].length > 4) {
+    } else if (dateSliced[0].length > 4 || dateSliced[0].length < 4) {
         console.log("Im too old for this. Ask my great grandson to do this")
         errors += 1
     }
@@ -123,11 +128,4 @@ export const validateDate = () => {
             console.log("This is default")
     }
     return errors
-}
-
-try {
-    errors = validateDate()
-} finally {
-    var errors
-    console.log(`${errors} Errors found!`)
 }
